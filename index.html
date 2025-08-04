@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jura + Gaia Coffee: Superior to Pod Machines</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .glass {
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toc {
+            background: rgba(241, 245, 249, 0.9);
+            position: sticky;
+            top: 2rem;
+            z-index: 100;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(203, 213, 225, 0.5);
+        }
+
+        .toc h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .toc a {
+            color: #3b82f6;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .toc a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.025em;
+        }
+
+        .read-more-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .read-more-content.expanded {
+            max-height: 5000px;
+            opacity: 1;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out 0.2s;
+        }
+
+        .read-more-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.4), 0 10px 10px -5px rgba(59, 130, 246, 0.1);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: rgba(248, 250, 252, 0.5);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: scale(1.01);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .highlight-row {
+            background: rgba(76, 175, 80, 0.2) !important;
+            font-weight: 600;
+        }
+
+        .cost-highlight {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cost-highlight i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border-radius: 24px;
+            margin-top: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .cta i {
+            margin-right: 0.75rem;
+            font-size: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .toc ul {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+            
+            .container {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        .icon-green { color: #4CAF50; }
+        .icon-red { color: #f44336; }
+        .icon-yellow { color: #FF9800; }
+        .icon-blue { color: #2196F3; }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <div class="container">
+
+
+        <!-- Main Intro Section - Always Visible -->
+        <div class="glass" style="text-align: center;">
+            <h2 class="section-title" style="justify-content: center;"><i class="fas fa-star"></i> Why Choose Jura Machines</h2>
+            <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">Why thousands of homes and offices choose Jura espresso machines for quality, consistency, and simplicity.</p>
+            
+            <button class="read-more-btn" onclick="toggleReadMore('main-content', this)" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
+                <i class="fas fa-chevron-down"></i> Read More
+            </button>
+        </div>
+
+        <!-- Main Expandable Content -->
+        <div class="read-more-content" id="main-content">
+            <!-- Coffee Maker Information Box -->
+            <div class="glass" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(147, 51, 234, 0.08) 100%); border: 2px solid rgba(59, 130, 246, 0.2);">
+                <h2 class="section-title" style="justify-content: center; text-align: center; color: #1e40af;"><i class="fas fa-shopping-cart"></i> Shop the Best Coffee Makers with Grinder for Fresh, Full-Flavored Brews</h2>
+              Meet the Jura Z10: The Ultimate in Luxury Coffee Technology
+Crafted for the true connoisseur, the Jura Z10 is more than a coffee machine - it’s a revolution in automated brewing. With groundbreaking features, Swiss precision, and stunning design, the Jura Z10 coffee machine redefines what’s possible in home and office espresso systems. Whether you’re exploring hot classics or refreshing cold brew specialties, the Jura Z10 automatic coffee and espresso machine adapts seamlessly to your taste and delivers a flawless cup every time.
+Innovative Cold Brew at the Touch of a Button
+The Jura Z10 is the first of its kind to feature Cold Extraction Process technology - allowing it to prepare authentic cold brew coffee in under three minutes. Unlike traditional iced coffee methods, the Z10 coffee machine uses high-pressure cold water to extract flavors slowly, preserving delicate aromas and offering a refreshing twist on your espresso ritual. From creamy cappuccinos to chilled flat whites, this machine does it all with one-touch simplicity.
+Dual-Spout Design, Built-In Grinder & Full Customization
+Equipped with the new Product Recognizing Grinder (P.R.G.), the Jura Z10 espresso machine automatically adjusts the grind size for each beverage, optimizing every shot. The dual-spout system allows you to prepare two drinks simultaneously, while the 4.3" touchscreen display and artificial intelligence functions provide an intuitive, customizable experience. 
+Whether you’re brewing espresso, macchiato, or cold brew, the Jura coffee maker Z10 delivers barista-level results without the effort.
+Design That Commands Attention
+Offered in elegant finishes such as Jura Z10 Diamond White, Midnight Blue, and Diamond Black, the Jura Z10 doesn’t just perform - it makes a statement. With clean lines and premium materials, it blends seamlessly into upscale kitchens and professional environments. Its compact yet powerful form ensures it’s as practical as it is stunning.
+Shop New and Refurbished Jura Z10 Machines
+Looking for a great deal? We offer both brand-new and Jura Z10 refurbished options for those who want premium performance at a better price point. Check our Jura Z10 sale listings for the latest offers. Whether you're interested in a classic Z10 Jura model or the latest limited edition, you'll find the perfect machine for your home or business right here at Upscale Coffee.
+Why Buy the Jura Z10 from Upscale Coffee?
+As an authorized Jura partner trusted by luxury brands like Disney, Jaguar, and Patek Philippe, Upscale Coffee offers unmatched expertise and exclusive perks. With every Jura Z10 for sale, you receive fast, insured shipping, expert setup guidance, and our signature white-glove customer service. Plus, your purchase includes over $70 in complimentary premium coffee - only when you buy your Jura coffee machine Z10 through us.
+Experience the Next Generation of Brewing with Jura Z10
+Whether you're exploring the Jura Z10 automatic coffee machine for personal indulgence or workplace luxury, this flagship model delivers innovation, elegance, and ease. Browse our current Jura Z10 on sale inventory and bring home a new standard in coffee excellence today. At Upscale Coffee, your perfect cup starts with the right machine - and the Jura Z series is the pinnacle.
+
+</p>
+                
+            </div>
+
+            <!-- Expanded Jura Content -->
+            <div class="glass">
+                <p style="margin-bottom: 2rem;">Jura represents the pinnacle of Swiss coffee engineering, delivering café-quality beverages with unmatched convenience and consistency.</p>
+                
+                <div class="pros-cons-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-cog"></i>
+                        <h3>Swiss Engineering</h3>
+                        <p>Precision-crafted components built to last decades, not years</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-snowflake"></i>
+                        <h3>Cold Brew Technology</h3>
+                        <p>Revolutionary cold extraction for smooth, refreshing coffee</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-magic"></i>
+                        <h3>Self-Cleaning</h3>
+                        <p>Automated cleaning cycles maintain peak performance</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Smart Controls</h3>
+                        <p>Touchscreen interface and mobile app integration</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Perfect Consistency</h3>
+                        <p>Every cup delivers identical flavor profiles and strength</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Gaia Coffee Partnership</h3>
+                        <p>Premium beans optimized for automatic brewing systems</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="glass toc" id="sticky-nav">
+                <h3><i class="fas fa-list"></i> Quick Navigation</h3>
+                <ul>
+                    <li><a href="#cost-comparison">Cost Analysis</a></li>
+                    <li><a href="#pros-cons">Pros & Cons</a></li>
+                    <li><a href="#competitor-comparison">Competitor Comparison</a></li>
+                </ul>
+            </div>
+
+            <!-- Cost Comparison Section -->
+            <div class="glass" id="cost-comparison">
+                <h2 class="section-title"><i class="fas fa-calculator"></i> Cost Comparison: The Numbers Don't Lie</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th><i class="fas fa-coffee icon-blue"></i> Jura + Gaia Coffee</th>
+                            <th><i class="fas fa-cube icon-yellow"></i> Pod Machine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-seedling"></i> Coffee</td>
+                            <td>$0.98</td>
+                            <td>$1.20 (per pod)</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-glass-whiskey"></i> Milk</td>
+                            <td>$0.21</td>
+                            <td>$0.21</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-bolt"></i> Electricity</td>
+                            <td>$0.01</td>
+                            <td>$0.01</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-chart-line"></i> Machine Amortization</td>
+                            <td>$0.32</td>
+                            <td>$0.15</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong><i class="fas fa-coins"></i> Total per Drink</strong></td>
+                            <td><strong>$1.51</strong></td>
+                            <td><strong>$1.65 – $1.90</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="cost-highlight">
+                    <i class="fas fa-piggy-bank"></i>
+                    <strong>Over 1,000 drinks per year, Jura + Gaia saves you up to $390 while delivering café-level flavor and zero plastic waste.</strong>
+                </div>
+            </div>
+
+            <!-- Pros & Cons Section -->
+            <div class="glass" id="pros-cons">
+                <h2 class="section-title"><i class="fas fa-balance-scale"></i> Qualitative Comparison</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th><i class="fas fa-coffee icon-blue"></i> Jura + Gaia</th>
+                            <th><i class="fas fa-cube icon-yellow"></i> Pod Machine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-heart"></i> Flavor</td>
+                            <td><i class="fas fa-star icon-green"></i> Barista-quality, fresh-ground</td>
+                            <td><i class="fas fa-meh icon-yellow"></i> Often metallic or stale</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-recycle"></i> Sustainability</td>
+                            <td><i class="fas fa-leaf icon-green"></i> Compostable grinds, zero waste</td>
+                            <td><i class="fas fa-times icon-red"></i> Non-recyclable pods</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-list-ul"></i> Variety</td>
+                            <td><i class="fas fa-check icon-green"></i> Cold brew, cappuccino, espresso, latte</td>
+                            <td><i class="fas fa-times icon-red"></i> Limited pod options</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-robot"></i> Automation</td>
+                            <td><i class="fas fa-check icon-green"></i> One-touch brewing & self-cleaning</td>
+                            <td><i class="fas fa-exclamation-triangle icon-yellow"></i> Some manual cleanup required</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-chart-line"></i> Long-Term Cost</td>
+                            <td><i class="fas fa-dollar-sign icon-green"></i> Cheaper per cup + ROI</td>
+                            <td><i class="fas fa-redo icon-red"></i> Expensive recurring pods</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Competitor Comparison -->
+            <div class="glass" id="competitor-comparison">
+                <h2 class="section-title"><i class="fas fa-trophy"></i> How Jura Stacks Against Competition</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Price Range</th>
+                            <th>Cold Brew</th>
+                            <th>Automation</th>
+                            <th>Cleaning</th>
+                            <th>Value Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td><strong><i class="fas fa-crown"></i> Jura</strong></td>
+                            <td>$1,200 – $3,500</td>
+                            <td><i class="fas fa-check icon-green"></i> Yes (Z10 etc)</td>
+                            <td><i class="fas fa-check icon-green"></i> Fully automatic</td>
+                            <td><i class="fas fa-check icon-green"></i> Self-cleaning</td>
+                            <td><i class="fas fa-star icon-green"></i> Premium + long-term ROI</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-tools"></i> Breville Barista</td>
+                            <td>$800 – $900</td>
+                            <td><i class="fas fa-times icon-red"></i> No</td>
+                            <td><i class="fas fa-exclamation-triangle icon-yellow"></i> Semi-auto</td>
+                            <td><i class="fas fa-times icon-red"></i> Manual</td>
+                            <td><i class="fas fa-wrench icon-yellow"></i> For DIY baristas</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-home"></i> Delonghi Magnifica</td>
+                            <td>$600 – $1,000</td>
+                            <td><i class="fas fa-times icon-red"></i> No</td>
+                            <td><i class="fas fa-check icon-green"></i> Basic automation</td>
+                            <td><i class="fas fa-exclamation-triangle icon-yellow"></i> Partial</td>
+                            <td><i class="fas fa-dollar-sign icon-yellow"></i> Entry-level but limited</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-gem"></i> Miele CM7750</td>
+                            <td>$3,500+</td>
+                            <td><i class="fas fa-times icon-red"></i> No</td>
+                            <td><i class="fas fa-check icon-green"></i> High-end</td>
+                            <td><i class="fas fa-check icon-green"></i> Auto-cleaning</td>
+                            <td><i class="fas fa-star icon-blue"></i> Great, but no cold brew</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="cta">
+                <h2><i class="fas fa-rocket"></i> Stop Settling for Stale Pods</h2>
+                <p>Get better coffee for less with Jura + Gaia Coffee</p>
+            </div>
+
+            <!-- Read Less Button at Bottom -->
+            <div class="glass" style="text-align: center; margin-top: 2rem;">
+                <button class="read-more-btn" onclick="toggleReadMore('main-content', this)" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
+                    <i class="fas fa-chevron-up"></i> Read Less
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleReadMore(contentId, button) {
+            const content = document.getElementById(contentId);
+            const allButtons = document.querySelectorAll('.read-more-btn');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                allButtons.forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-chevron-down"></i> Read More';
+                });
+                // Scroll to top of page when collapsing
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                content.classList.add('expanded');
+                allButtons.forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-chevron-up"></i> Read Less';
+                });
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Ensure content is expanded before scrolling
+                    const mainContent = document.getElementById('main-content');
+                    if (!mainContent.classList.contains('expanded')) {
+                        mainContent.classList.add('expanded');
+                        const button = document.querySelector('.read-more-btn');
+                        button.innerHTML = '<i class="fas fa-chevron-up"></i> Read Less';
+                    }
+                    
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+            });
+        });
+
+        // Add hover effects to table rows
+        document.querySelectorAll('.comparison-table tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a027eb351d43f7',t:'MTc1NDMzMjU0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
